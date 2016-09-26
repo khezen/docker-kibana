@@ -1,2 +1,2 @@
-# docker-kibana
-Kibana Docker image including marvel plugin &amp; shield auth environment
+## docker-kibana
+Kibana Docker image including marvel plugin and shield auth environment
