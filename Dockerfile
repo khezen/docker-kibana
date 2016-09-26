@@ -8,8 +8,10 @@ RUN kibana plugin --install elastic/sense && \
 RUN apt-get update && apt-get install -y nodejs npm && \
     npm install -g yamljs
 
+ADD ./reconfigure.js /reconfigure.js
+RUN chmod +x /reconfigure.js
+ADD ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-ADD ./entrypoint.js /entrypoint.js
-RUN chmod +x /entrypoint.js
-ENTRYPOINT ["/entrypoint.js"]
+ENTRYPOINT ["/entrypoint.sh"]
 CMD ["kibana"]
