@@ -1,5 +1,8 @@
 FROM kibana:5.0
 
+MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
+LABEL Description="kibana marvel graph reporting"
+
 RUN bin/kibana-plugin install x-pack
 
 RUN apt-get update && apt-get install -y nodejs npm && \
