@@ -1,4 +1,4 @@
-FROM kibana:latest
+FROM kibana:4.6
 
 RUN kibana plugin --install elastic/sense && \
     kibana plugin --install elasticsearch/marvel/latest && \
