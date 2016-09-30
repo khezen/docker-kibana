@@ -1,9 +1,6 @@
-FROM kibana:4.6
+FROM kibana:5.0
 
-RUN kibana plugin --install elastic/sense && \
-    kibana plugin --install elasticsearch/marvel/latest && \
-    kibana plugin --install elasticsearch/graph/latest && \
-    kibana plugin --install kibana/reporting/latest
+RUN bin/kibana-plugin install x-pack
 
 RUN apt-get update && apt-get install -y nodejs npm && \
     npm install -g yamljs
