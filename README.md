@@ -1,9 +1,30 @@
-## docker-kibana
-Kibana Docker image including marvel plugin and shield auth environment
+[![](https://images.microbadger.com/badges/image/khezen/kibana.svg)](https://microbadger.com/images/khezen/elasticsearch "Get your own version badge on microbadger.com")
+# Supported tags and respective `Dockerfile` links
 
-### How To Use
+* `4.6.1`, `4.6`, `4`, `latest` [(4.6/Dockerfile)](https://github.com/Khezen/docker-elasticseach/blob/2.4/Dockerfile)
+* `5.0.0-alpha`, `5.0`, `5` [(5.0/Dockerfile)](https://github.com/Khezen/docker-elasticseach/blob/5.0/Dockerfile)
 
-### Default Configuration
+# How To Use
+
+## docker engine
+
+```
+docker run -d -p 5601:5601 Khezen/kibana:latest   
+```
+
+## docker-compose
+```
+version: '2'
+services:
+    elasticseach:
+        image: khezen/elasticsearch
+        ports:
+             - "5601:5601"
+        network_mode: bridge
+        restart: always
+```
+
+# Default Configuration
 
 ```
 # Kibana is served by a back end server. This controls which port to use.
