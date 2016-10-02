@@ -17,7 +17,7 @@ docker run -d -p 5601:5601 Khezen/kibana:latest
 version: '2'
 services:
     elasticseach:
-        image: khezen/elasticsearch
+        image: khezen/kibana:4
         ports:
              - "5601:5601"
         network_mode: bridge
