@@ -16,7 +16,7 @@ docker run -d -p 5601:5601 Khezen/kibana:latest
 ```
 version: '2'
 services:
-    elasticseach:
+    kibana:
         image: khezen/kibana:4
         ports:
              - "5601:5601"
