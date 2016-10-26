@@ -1,4 +1,4 @@
-[![](https://images.microbadger.com/badges/image/khezen/kibana.svg)](https://microbadger.com/images/khezen/elasticsearch "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/khezen/kibana.svg)](https://hub.docker.com/r/khezen/kibana/)
 # Supported tags and respective `Dockerfile` links
 
 * `4.6.1`, `4.6`, `4`, `latest` [(4.6/Dockerfile)](https://github.com/Khezen/docker-elasticseach/blob/2.4/Dockerfile)
