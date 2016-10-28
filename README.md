@@ -1,8 +1,13 @@
 [![](https://images.microbadger.com/badges/image/khezen/kibana.svg)](https://hub.docker.com/r/khezen/kibana/)
 # Supported tags and respective `Dockerfile` links
 
-* `4.6.1`, `4.6`, `4`, `latest` [(4.6/Dockerfile)](https://github.com/Khezen/docker-elasticseach/blob/2.4/Dockerfile)
-* `5.0.0-alpha`, `5.0`, `5` [(5.0/Dockerfile)](https://github.com/Khezen/docker-elasticseach/blob/5.0/Dockerfile)
+* `4.6.1`, `4.6`, `4`  [(4.6/Dockerfile)](https://github.com/Khezen/docker-elasticseach/blob/2.4/Dockerfile)
+* `5.0.0`, `5.0`, `5`, `latest` [(5.0/Dockerfile)](https://github.com/Khezen/docker-elasticseach/blob/5.0/Dockerfile)
+
+# What is Kibana?
+Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack, so you can do anything from learning why you're getting paged at 2:00 a.m. to understanding the impact rain might have on your quarterly numbers.
+
+[<img src="https://static-www.elastic.co/fr/assets/blt282ae2420e32fc38/icon-kibana-bb.svg?q=802" width="144" height="144">](https://www.elastic.co/fr/products/kibana)
 
 # How To Use
 
@@ -17,7 +22,7 @@ docker run -d -p 5601:5601 Khezen/kibana:latest
 version: '2'
 services:
     kibana:
-        image: khezen/kibana:4
+        image: khezen/kibana:5
         ports:
              - "5601:5601"
         network_mode: bridge
@@ -106,3 +111,6 @@ bundled_plugin_ids:
 Contact GitHub API Training Shop Blog About
 © 2016 GitHub, Inc. Terms Privacy Security Status Help
 ```
+# User Feedback
+## Issues
+If you have any problems with or questions about this image, please ask for help through a [GitHub issue](https://github.com/Khezen/docker-kibana/issues).
