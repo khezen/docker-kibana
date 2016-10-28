@@ -1,3 +1,0 @@
-var YAML = require("yamljs");
-
-
