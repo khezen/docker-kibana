@@ -1,14 +1,10 @@
 version: '2'
 services:
-
-    services:
-    elasticseach:
-        build: ..
+    elasticsearch:
+        image: khezen/elasticsearch
         environment:
-            superuser: admin
-            superuser_pwd: changeme
-            kibanauser: kibanauser
-            kibanauser_pwd: changeme
+            elastic_pwd: changeme
+            kibana_pwd: brucewayne
         ports:
              - "9200:9200"
              - "9300:9300"
@@ -18,10 +14,9 @@ services:
     kibana:
         links:
             - elasticsearch
-        build: ..
+        build: docker-kibana/
         environment:
-            kibanauser: kibanauser
-            kibanauser_pwd: changeme
+            kibana_pwd: brucewayne
         ports:
              - "5601:5601"
         network_mode: bridge
