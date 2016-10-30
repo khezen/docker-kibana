@@ -1,9 +1,12 @@
 #!bin/bash
 
-baseregexp="#[^\\n\\r]*"
+anything_but_crlf="[^\\n\\r]"
+baseregexp="#$anything_but_crlf*"
 
-if [ "$kibana_pwd" != "" ]; then
-    sed -ri "s/$baseregexp\{pass\}/elasticsearch.password: $kibana_pwd/" /etc/kibana/kibana.yml
-fi
+# KIBANA PWD
+sed -ri "s/$baseregexp\{pass\}/elasticsearch.password: $kibana_pwd/" /etc/kibana/kibana.yml
+# ELASTICSEARCH URL
+sed -ri "s/$baseregexp\{url\}/elasticsearch.url: 'http:\/\/$elasticsearch_host:$elasticsearch_port'/" /etc/kibana/kibana.yml
+
 
 cat /etc/kibana/kibana.yml

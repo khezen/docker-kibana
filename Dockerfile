@@ -7,7 +7,9 @@ RUN /usr/share/kibana/bin/kibana-plugin install x-pack
 
 COPY config/default.yml /etc/kibana/kibana.yml
 
-ENV kibana_pwd="changeme"
+ENV kibana_pwd="changeme" \
+    elasticsearch_host="elasticsearch" \
+    elasticsearch_port="9200"
 
 ADD ./src/ /run/
 RUN chmod +x -R /run/

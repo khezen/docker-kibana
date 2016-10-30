@@ -48,6 +48,12 @@ services:
 ##### kibana_pwd | `changeme`
 password for elasticsearch built-in user *kibana*.
 
+##### elasticsearch_host | `elasticseach`
+Elasticsearch hostname.
+
+##### elasticsearch_port | `9200`
+Elasticsearch port.
+
 # User Feedback
 ## Issues
 If you have any problems with or questions about this image, please ask for help through a [GitHub issue](https://github.com/Khezen/docker-kibana/issues).

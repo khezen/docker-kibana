@@ -18,7 +18,7 @@ server.host: '0.0.0.0'
 #server.name: "your-hostname"
 
 # The URL of the Elasticsearch instance to use for all your queries.
-elasticsearch.url: 'http://elasticsearch:9200'
+#elasticsearch.url: {url}
 
 # When this setting’s value is true Kibana uses the hostname specified in the server.host
 # setting. When the value of this setting is false, Kibana uses the hostname of the host
@@ -54,7 +54,7 @@ elasticsearch.url: 'http://elasticsearch:9200'
 #elasticsearch.ssl.ca: /path/to/your/CA.pem
 
 # To disregard the validity of SSL certificates, change this setting’s value to false.
-elasticsearch.ssl.verify: false
+# elasticsearch.ssl.verify: true
 
 # Time in milliseconds to wait for Elasticsearch to respond to pings. Defaults to the value of
 # the elasticsearch.requestTimeout setting.
