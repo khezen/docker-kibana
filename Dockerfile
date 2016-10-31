@@ -14,5 +14,7 @@ ENV kibana_pwd="changeme" \
 ADD ./src/ /run/
 RUN chmod +x -R /run/
 
+VOLUME /etc/kibana
+
 ENTRYPOINT ["/run/entrypoint.sh"]
 CMD ["kibana"]
