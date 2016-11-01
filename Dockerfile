@@ -5,7 +5,8 @@ LABEL Description="kibana x-pack marvel graph reporting"
 
 RUN /usr/share/kibana/bin/kibana-plugin install x-pack
 
-COPY config/default.yml /etc/kibana/kibana.yml
+RUN mkdir -p /.backup
+COPY config/kibana.yml /.backup/kibana/kibana.yml
 
 ENV kibana_pwd="changeme" \
     elasticsearch_host="elasticsearch" \
