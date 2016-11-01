@@ -3,7 +3,6 @@
 set -m
 
 if [ ! -f /etc/kibana/kibana.yml ]; then
-    echo "######################################################################"
     cp -r /.backup/kibana /etc/
 fi
 
