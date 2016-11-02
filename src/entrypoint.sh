@@ -7,6 +7,13 @@ if [ ! -f /etc/kibana/kibana.yml ]; then
 fi
 
 /run/edit_config.sh
-/docker-entrypoint.sh "$@" &
+
+if [[ "$1" == -* ]]; then
+	set -- kibana "$@"
+fi
+if [ "$1" = 'kibana' ]; then
+	set -- gosu kibana tini -- "$@"
+fi
+$@ &
 
 fg
