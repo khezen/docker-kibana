@@ -3,7 +3,8 @@ FROM kibana:5.0
 MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
 LABEL Description="kibana x-pack marvel graph reporting"
 
-RUN /usr/share/kibana/bin/kibana-plugin install x-pack
+RUN /usr/share/kibana/bin/kibana-plugin install x-pack \
+&&  apt-get update -y && apt-get install curl -y
 
 RUN mkdir -p /.backup
 COPY config/kibana.yml /.backup/kibana/kibana.yml
