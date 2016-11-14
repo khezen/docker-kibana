@@ -8,7 +8,7 @@ RUN /usr/share/kibana/bin/kibana-plugin install x-pack \
 # curl used to check elasticsearch is started
 &&  apt-get install curl -y \
 # dependencies for reporting 
-&& apt-get install libfontconfig libfreetype6-y
+&& apt-get install libfontconfig libfreetype6 -y
 
 RUN mkdir -p /.backup
 COPY config/kibana.yml /.backup/kibana/kibana.yml
