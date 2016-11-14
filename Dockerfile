@@ -4,7 +4,11 @@ MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
 LABEL Description="kibana x-pack marvel graph reporting"
 
 RUN /usr/share/kibana/bin/kibana-plugin install x-pack \
-&&  apt-get update -y && apt-get install curl -y
+&&  apt-get update -y \
+# curl used to check elasticsearch is started
+&&  apt-get install curl -y \
+# dependencies for reporting 
+&& apt-get install libfontconfig libfreetype6-y
 
 RUN mkdir -p /.backup
 COPY config/kibana.yml /.backup/kibana/kibana.yml
