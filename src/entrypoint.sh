@@ -2,16 +2,11 @@
 
 set -m
 
-if [ ! -f /etc/kibana/kibana.yml ]; then
-    cp -r /.backup/kibana /etc/
-fi
-/run/edit_config.sh
+/run/miscellaneous/restore_config.sh
+/run/miscellaneous/edit_config.sh
+/run/miscellaneous/wait_for_elasticsearch.sh
 
-/run/wait_for_elasticsearch.sh
-
-if [[ "$1" == -* ]]; then
-	set -- kibana "$@"
-fi
+# Run as user "logstash" if the command is "kibana"
 if [ "$1" = 'kibana' ]; then
 	set -- gosu kibana tini -- "$@"
 fi
