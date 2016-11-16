@@ -33,8 +33,8 @@ services:
     elasticsearch:
         image: khezen/elasticsearch
         environment:
-            elastic_pwd: changeme
-            kibana_pwd: brucewayne
+            ELASTIC_PWD: changeme
+            KIBANA_PWD: brucewayne
         ports:
              - "9200:9200"
              - "9300:9300"
@@ -46,7 +46,7 @@ services:
             - elasticsearch
         image: khezen/kibana:5
         environment:
-            kibana_pwd: brucewayne
+            KIBANA_PWD: brucewayne
         ports:
              - "5601:5601"
         network_mode: bridge
@@ -55,13 +55,13 @@ services:
 ```
 # Environment Variables
 
-##### kibana_pwd | `changeme`
+##### KIBANA_PWD | `changeme`
 password for elasticsearch built-in user *kibana*.
 
-##### elasticsearch_host | `elasticseach`
+##### ELASTICSEARCH_HOST | `elasticseach`
 Elasticsearch hostname.
 
-##### elasticsearch_port | `9200`
+##### ELASTICSEARCH_PORT | `9200`
 Elasticsearch port.
 
 # User Feedback

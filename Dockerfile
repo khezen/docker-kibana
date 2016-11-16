@@ -13,9 +13,9 @@ RUN /usr/share/kibana/bin/kibana-plugin install x-pack \
 RUN mkdir -p /.backup
 COPY config/kibana.yml /.backup/kibana/kibana.yml
 
-ENV kibana_pwd="changeme" \
-    elasticsearch_host="elasticsearch" \
-    elasticsearch_port="9200"
+ENV KIBANA_PWD="changeme" \
+    ELASTICSEARCH_HOST="elasticsearch" \
+    ELASTICSEARCH_PORT="9200"
 
 ADD ./src/ /run/
 RUN chmod +x -R /run/
