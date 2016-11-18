@@ -10,7 +10,7 @@ RUN /usr/share/kibana/bin/kibana-plugin install x-pack \
 # dependencies for reporting 
 && apt-get install libfontconfig libfreetype6 -y
 
-RUN mkdir -p /.backup
+RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
 
 ENV KIBANA_PWD="changeme" \
