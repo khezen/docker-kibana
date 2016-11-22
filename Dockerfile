@@ -12,6 +12,7 @@ RUN /usr/share/kibana/bin/kibana-plugin install x-pack \
 
 RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
+RUN rm -f /etc/kibana/kibana.yml
 
 ENV KIBANA_PWD="changeme" \
     ELASTICSEARCH_HOST="elasticsearch" \
