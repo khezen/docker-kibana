@@ -90,6 +90,14 @@ Elasticsearch hostname.
 ##### ELASTICSEARCH_PORT | `9200`
 Elasticsearch port.
 
+# Configure Kibana
+
+Configuration file is located in `/etc/kibana/kibana.yml` if you follow the same volume mapping as in docker-compose examples above.
+
+You can find default config [there](https://github.com/Khezen/docker-kibana/blob/master/config/default.yml).
+
+You can find help with kibana configuration [there](https://www.elastic.co/guide/en/kibana/current/settings.html).
+
 # User Feedback
 ## Issues
 If you have any problems with or questions about this image, please ask for help through a [GitHub issue](https://github.com/Khezen/docker-kibana/issues).
