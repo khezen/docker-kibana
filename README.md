@@ -84,7 +84,7 @@ services:
 ##### KIBANA_PWD | `changeme`
 password for elasticsearch built-in user *kibana*.
 
-##### ELASTICSEARCH_HOST | `elasticseach`
+##### ELASTICSEARCH_HOST | `elasticsearch`
 Elasticsearch hostname.
 
 ##### ELASTICSEARCH_PORT | `9200`
