@@ -1,4 +1,4 @@
-FROM kibana:5.0
+FROM kibana:5.1
 
 MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
 LABEL Description="kibana x-pack marvel graph reporting"
