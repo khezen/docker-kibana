@@ -1,7 +1,8 @@
 [![](https://images.microbadger.com/badges/image/khezen/kibana.svg)](https://hub.docker.com/r/khezen/kibana/)
 # Supported tags and respective `Dockerfile` links
 
-* `5.0.1`, `5.0`, `5`, `latest` [(5.0/Dockerfile)](https://github.com/Khezen/docker-kibana/blob/5.0/Dockerfile)
+* `5.0.1`, `5.0` [(5.0/Dockerfile)](https://github.com/Khezen/docker-kibana/blob/5.0/Dockerfile)
+* `5.1.1`, `5.1`, `5`, `latest` [(5.0/Dockerfile)](https://github.com/Khezen/docker-kibana/blob/5.1/Dockerfile)
 
 # What is Kibana?
 Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack, so you can do anything from learning why you're getting paged at 2:00 a.m. to understanding the impact rain might have on your quarterly numbers.
