@@ -1,14 +1,14 @@
-FROM kibana:5.0
+FROM kibana:5.1
 
 MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
-LABEL Description="kibana x-pack marvel graph reporting"
+LABEL Description="kibana"
 
-RUN /usr/share/kibana/bin/kibana-plugin install x-pack \
-&&  apt-get update -y \
+RUN wget https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.1.1-alpha/searchguard-kibana-alpha-5.1.1.zip -P /tmp
+RUN /usr/share/kibana/bin/kibana-plugin install file:///tmp/searchguard-kibana-alpha-5.1.1.zip
+
+RUN apt-get update -y \
 # curl used to check elasticsearch is started
-&&  apt-get install curl -y \
-# dependencies for reporting 
-&& apt-get install libfontconfig libfreetype6 -y
+&&  apt-get install curl -y
 
 RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
