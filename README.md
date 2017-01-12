@@ -2,7 +2,6 @@
 # Supported tags and respective `Dockerfile` links
 
 * `4.6.3`, `4.6`, `4` [(4.6/Dockerfile)](https://github.com/Khezen/docker-kibana/blob/4.6/Dockerfile)
-* `5.0.2`, `5.0` [(5.0/Dockerfile)](https://github.com/Khezen/docker-kibana/blob/5.0/Dockerfile)
 * `5.1.1`, `5.1`, `5`, `latest` [(5.0/Dockerfile)](https://github.com/Khezen/docker-kibana/blob/5.1/Dockerfile)
 
 # What is Kibana?
