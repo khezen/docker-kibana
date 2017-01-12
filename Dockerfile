@@ -1,16 +1,24 @@
 FROM kibana:4.6
 
 MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
-LABEL Description="kibana marvel graph reporting"
+LABEL Description="kibana"
 
+RUN apt-get update -y \
+# curl used to check elasticsearch is started
+&&  apt-get install curl -y
 
-RUN kibana plugin --install elastic/sense && \
-    kibana plugin --install elasticsearch/marvel/latest && \
-    kibana plugin --install elasticsearch/graph/latest && \
-    kibana plugin --install kibana/reporting/latest
+RUN mkdir -p /.backup/kibana
+COPY config/kibana.yml /.backup/kibana/kibana.yml
+RUN rm -f /etc/kibana/kibana.yml
 
-ADD ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ENV KIBANA_PWD="changeme" \
+    ELASTICSEARCH_HOST="elasticsearch" \
+    ELASTICSEARCH_PORT="9200"
 
-ENTRYPOINT ["/entrypoint.sh"]
+ADD ./src/ /run/
+RUN chmod +x -R /run/
+
+VOLUME /etc/kibana
+
+ENTRYPOINT ["/run/entrypoint.sh"]
 CMD ["kibana"]
