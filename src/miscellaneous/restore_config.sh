@@ -1,5 +1,5 @@
 #!/bin/bash
 
-if [ ! -f /etc/kibana/kibana.yml ]; then
-    cp -r /.backup/kibana /etc/
+if [ ! -f /opt/kibana/config/kibana.yml ]; then
+    cp -r /.backup/kibana/config /opt/kibana
 fi

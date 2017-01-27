@@ -29,29 +29,29 @@ You can set it permanently by modifying `vm.max_map_count` setting in your `/etc
 
 ### docker-compose.yml
 ```
-version: '2'
+version: '3'
 services:
     kibana:
-        image: khezen/kibana:5
+        image: khezen/kibana:4
         environment:
             KIBANA_PWD: changeme
             ELASTICSEARCH_HOST: localhost
             ELASTICSEARCH_PORT: 9200
         volumes:
-            - /etc/kibana:/etc/kibana
+            - /etc/kibana:/opt/kibana/config/
         ports:
              - "5601:5601"
         network_mode: bridge
-        restart: always
+        restart: unless-stopped
 ```
 
 or
 
 ```
-version: '2'
+version: '3'
 services:
     elasticsearch:
-        image: khezen/elasticsearch
+        image: khezen/elasticsearch:2
         environment:
             ELASTIC_PWD: changeme
             KIBANA_PWD: brucewayne
@@ -62,22 +62,22 @@ services:
              - "9200:9200"
              - "9300:9300"
         network_mode: bridge
-        restart: always
+        restart: unless-stopped
 
     kibana:
         links:
             - elasticsearch
-        image: khezen/kibana:5
+        image: khezen/kibana:4
         environment:
             KIBANA_PWD: brucewayne
             ELASTICSEARCH_HOST: elasticsearch
             ELASTICSEARCH_PORT: 9200
         volumes:
-            - /etc/kibana:/etc/kibana
+            - /etc/kibana:/opt/kibana/config/
         ports:
              - "5601:5601"
         network_mode: bridge
-        restart: always
+        restart: unless-stopped
 
 ```
 # Environment Variables
