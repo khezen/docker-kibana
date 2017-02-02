@@ -16,7 +16,7 @@ RUN rm -f /etc/kibana/kibana.yml
 ENV KIBANA_PWD="changeme" \
     ELASTICSEARCH_HOST="elasticsearch" \
     ELASTICSEARCH_PORT="9200" \
-    ELASTICSEARCH_PROTO="http"
+    ELASTICSEARCH_PROTOCOL="http"
     
 ADD ./src/ /run/
 RUN chmod +x -R /run/
