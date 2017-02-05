@@ -7,7 +7,14 @@ RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/
 
 # curl used to check elasticsearch is started
 RUN apt-get update -y \
-&&  apt-get install curl supervisor -y
+&&  apt-get install curl supervisor python-pip nginx -y
+
+RUN pip install envtpl
+
+ENV KOPF_VERSION 2.1.3
+RUN curl -s -L "https://github.com/lshahar/elasticsearch-kopf/archive/v${KOPF_VERSION}.tar.gz" | \
+    tar xz -C /tmp && mv "/tmp/elasticsearch-kopf-${KOPF_VERSION}" /kopf
+    
 
 RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
