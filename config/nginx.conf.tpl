@@ -21,7 +21,7 @@ server {
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header        X-Forwarded-Proto $scheme;
-        proxy_pass          http://10.67.1.179:9200;
+        proxy_pass          http://{{ ELASTICSEARCH_HOST }}:9200;
         #proxy_set_header Authorization "Basic ZWxhc3RpYzpjaGFuZ2VtZQ==";
         proxy_read_timeout  90;
     }
