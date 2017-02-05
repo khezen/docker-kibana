@@ -35,6 +35,6 @@ VOLUME /etc/kibana
 
 #ENTRYPOINT ["/run/entrypoint.sh"]
 #CMD ["kibana"]
- chown 999:999 -R /usr/share/kibana
+RUN chown 999:999 -R /usr/share/kibana
 
 ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
