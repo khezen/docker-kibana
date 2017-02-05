@@ -19,6 +19,7 @@ RUN curl -s -L "https://github.com/lshahar/elasticsearch-kopf/archive/v${KOPF_VE
 RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
 COPY config/supervisord.conf /etc/supervisord.conf
+COPY config/nginx.conf /etc/nginx.conf
 RUN rm -f /etc/kibana/kibana.yml
 
 ENV KIBANA_PWD="changeme" \
