@@ -5,9 +5,9 @@ LABEL Description="kibana"
 
 RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.1.2-alpha/searchguard-kibana-alpha-5.1.2.zip
 
-RUN apt-get update -y \
 # curl used to check elasticsearch is started
-&&  apt-get install curl -y
+RUN apt-get update -y \
+&&  apt-get install curl supervisor -y
 
 RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
@@ -23,5 +23,6 @@ RUN chmod +x -R /run/
 
 VOLUME /etc/kibana
 
-ENTRYPOINT ["/run/entrypoint.sh"]
-CMD ["kibana"]
+#ENTRYPOINT ["/run/entrypoint.sh"]
+#CMD ["kibana"]
+ENTRYPOINT ["supervisord", "--nodaemon", "--configuration", "/etc/supervisord.conf"]
