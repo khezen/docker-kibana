@@ -11,6 +11,7 @@ RUN apt-get update -y \
 
 RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
+COPY config/supervisord.conf /etc/supervisord.conf
 RUN rm -f /etc/kibana/kibana.yml
 
 ENV KIBANA_PWD="changeme" \
