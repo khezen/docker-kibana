@@ -1,4 +1,4 @@
-[![](https://images.microbadger.com/badges/image/khezen/kibana.svg)](https://hub.docker.com/r/khezen/kibana/)
+[![](https://images.microbadger.com/badges/image/khezen/kibana.svg)](https://hub.docker.com/r/lshahar/docker-kibana/)
 # Supported tags and respective `Dockerfile` links
 
 * `4.6.4`, `4.6`, `4` [(4.6/Dockerfile)](https://github.com/Khezen/docker-kibana/blob/4.6/Dockerfile)
