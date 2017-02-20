@@ -1,9 +1,9 @@
-FROM kibana:5.2
+FROM kibana:5.2.1
 
 MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
 LABEL Description="kibana"
 
-RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.2.0-1/searchguard-kibana-5.2.0-1.zip
+RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v5.2.1-1/searchguard-kibana-5.2.1-1.zip
 
 RUN apt-get update -y \
 # curl used to check elasticsearch is started
