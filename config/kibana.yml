@@ -52,10 +52,10 @@ searchguard.cookie.password: "4fjNPloEVvrVj28BsVh3jI8t3pmv7Qg6"
 
 # Optional setting that enables you to specify a path to the PEM file for the certificate
 # authority for your Elasticsearch instance.
-elasticsearch.ssl.ca: /path/to/your/CA.pem
+elasticsearch.ssl.ca: /etc/elasticsearch/searchguard/ssl/ca/root-ca.pem
 
 # To disregard the validity of SSL certificates, change this setting’s value to false.
-elasticsearch.ssl.verify: false
+elasticsearch.ssl.verify: true
 
 # Time in milliseconds to wait for Elasticsearch to respond to pings. Defaults to the value of
 # the elasticsearch.requestTimeout setting.
