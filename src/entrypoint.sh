@@ -10,6 +10,8 @@ set -m
 if [ "$1" = 'kibana' ]; then
 	set -- gosu kibana tini -- "$@"
 fi
+
+cat /etc/kibana/kibana.yml
 $@ &
 
 fg

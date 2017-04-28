@@ -51,7 +51,7 @@ RUN set -ex; \
 # https://www.elastic.co/guide/en/kibana/5.0/deb.html
 RUN echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/kibana.list
 
-ENV KIBANA_VERSION 5.3.0
+ENV KIBANA_VERSION 5.3.1
 
 RUN set -x \
 	&& apt-get update \
@@ -69,7 +69,7 @@ RUN set -x \
 ENV PATH /usr/share/kibana/bin:$PATH
 
 # Plugins
-RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-1/searchguard-kibana-$KIBANA_VERSION-1.zip
+RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-2/searchguard-kibana-$KIBANA_VERSION-2.zip
 
 RUN apt-get update -y \
 # curl used to check elasticsearch is started
