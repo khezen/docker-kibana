@@ -1,9 +1,9 @@
-FROM kibana:5.3.2
+FROM kibana:5.4.0
 
 MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
 LABEL Description="kibana"
 
-ENV KIBANA_VERSION 5.3.2
+ENV KIBANA_VERSION 5.4.0
 
 # Plugins
 RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-2/searchguard-kibana-$KIBANA_VERSION-2.zip
