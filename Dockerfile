@@ -6,7 +6,7 @@ LABEL Description="kibana"
 ENV KIBANA_VERSION 5.4.0
 
 # Plugins
-RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-2/searchguard-kibana-$KIBANA_VERSION-2.zip
+RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION/searchguard-kibana-$KIBANA_VERSION-2.zip
 
 RUN apt-get update -y \
 # curl used to check elasticsearch is started
