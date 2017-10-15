@@ -67,9 +67,6 @@ RUN set -x \
 RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-4/searchguard-kibana-$KIBANA_VERSION-4.zip
 
 ENV PATH /usr/share/kibana/bin:$PATH
-
-COPY docker-entrypoint.sh /
-
 EXPOSE 5601
 
 RUN apt-get update -y \
