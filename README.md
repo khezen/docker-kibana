@@ -30,38 +30,6 @@ You can set it permanently by modifying `vm.max_map_count` setting in your `/etc
 ```
 version: '2'
 services:
-    kibana:
-        image: khezen/kibana:5
-        environment:
-            KIBANA_PWD: changeme
-            ELASTICSEARCH_HOST: localhost
-            ELASTICSEARCH_PORT: 9200
-        volumes:
-            - /etc/kibana:/etc/kibana
-        ports:
-             - "5601:5601"
-        network_mode: bridge
-        restart: always
-```
-
-or
-
-```
-version: '2'
-services:
-    elasticsearch:
-        image: khezen/elasticsearch
-        environment:
-            ELASTIC_PWD: changeme
-            KIBANA_PWD: brucewayne
-        volumes:
-            - /data/elasticsearch:/usr/share/elasticsearch/data
-            - /etc/elasticsearch:/usr/share/elasticsearch/config
-        ports:
-             - "9200:9200"
-             - "9300:9300"
-        network_mode: bridge
-        restart: always
 
     kibana:
         links:
@@ -78,6 +46,19 @@ services:
         network_mode: bridge
         restart: always
 
+    elasticsearch:
+        image: khezen/elasticsearch
+        environment:
+            ELASTIC_PWD: changeme
+            KIBANA_PWD: changeme
+        volumes:
+            - /data/elasticsearch:/usr/share/elasticsearch/data
+            - /etc/elasticsearch:/usr/share/elasticsearch/config
+        ports:
+             - "9200:9200"
+             - "9300:9300"
+        network_mode: bridge
+        restart: always
 ```
 # Environment Variables
 
