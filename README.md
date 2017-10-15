@@ -10,23 +10,10 @@ Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack
 
 # How To Use
 
-## docker engine
-
 ```
 docker run -d -p 5601:5601 khezen/kibana:latest   
 ```
 
-## docker-compose
-
-### [File Descriptors and MMap](https://www.elastic.co/guide/en/elasticsearch/guide/current/_file_descriptors_and_mmap.html)
-
-run the following command on your host:
-```
-sysctl -w vm.max_map_count=262144
-```
-You can set it permanently by modifying `vm.max_map_count` setting in your `/etc/sysctl.conf`.
-
-### docker-compose.yml
 ```
 version: '2'
 services:
@@ -60,6 +47,14 @@ services:
         network_mode: bridge
         restart: always
 ```
+
+### [File Descriptors and MMap](https://www.elastic.co/guide/en/elasticsearch/guide/current/_file_descriptors_and_mmap.html)
+
+run the following command on your host:
+```
+sysctl -w vm.max_map_count=262144
+```
+You can set it permanently by modifying `vm.max_map_count` setting in your `/etc/sysctl.conf`.
 # Environment Variables
 
 ##### KIBANA_PWD | `changeme`
