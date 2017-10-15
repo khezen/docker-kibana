@@ -1,4 +1,4 @@
-FROM kibana:5.5.0
+FROM kibana:5.6.3
 
 MAINTAINER Guillaume Simonneau <simonneaug@gmail.com>
 LABEL Description="kibana"
