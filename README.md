@@ -15,51 +15,6 @@ Kibana lets you visualize your Elasticsearch data and navigate the Elastic Stack
 docker run -d -p 5601:5601 khezen/kibana:latest   
 ```
 
-```
-version: '2'
-services:
-    kibana:
-        links:
-            - elasticsearch
-        image: khezen/kibana:5
-        environment:
-            KIBANA_PWD: changeme
-            ELASTICSEARCH_HOST: elasticsearch
-            ELASTICSEARCH_PORT: 9200
-        volumes:
-            - kibana_config:/opt/kibana/config/
-            - es_config:/etc/elasticsearch/
-        ports:
-             - "5601:5601"
-        networks:
-            - elk
-        restart: always
-    elasticsearch:
-        image: khezen/elasticsearch
-        environment:
-            ELASTIC_PWD: changeme
-            KIBANA_PWD: changeme
-        volumes:
-            - es_data:/usr/share/elasticsearch/data
-            - es_config:/usr/share/elasticsearch/config
-        ports:
-             - "9200:9200"
-             - "9300:9300"
-        networks:
-            - elk
-        restart: always
-volumes:
-  es_config:
-    driver: local
-  es_data:
-    driver: local
-  kibana_config:
-    driver: local
-networks:
-  elk:
-    driver: bridge
-```
-
 ### [File Descriptors and MMap](https://www.elastic.co/guide/en/elasticsearch/guide/current/_file_descriptors_and_mmap.html)
 
 run the following command on your host:
