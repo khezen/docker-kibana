@@ -1,9 +1,10 @@
 #!bin/bash
 
-# KIBANA PWD
-sed -ri "s|elasticsearch.password:[^\r\n]*|elasticsearch.password: $KIBANA_PWD|" /etc/kibana/kibana.yml
-# ELASTICSEARCH URL
-sed -ri "s|elasticsearch.url:[^\r\n]*|elasticsearch.url: https://$ELASTICSEARCH_HOST:$ELASTICSEARCH_PORT|" /etc/kibana/kibana.yml
-# SSL
-sed -ri "s|elasticsearch.ssl.verify:[^\r\n]*|elasticsearch.ssl.verify: true|" /etc/kibana/kibana.yml
-sed -ri "s|elasticsearch.ssl.ca:[^\r\n]*|elasticsearch.ssl.ca: /etc/elasticsearch/searchguard/ssl/ca/root-ca.pem|" /etc/kibana/kibana.yml
+CONF="/opt/kibana-$KIBANA_VERSION/config/kibana.yml"
+
+sed -ri "s|elasticsearch.url:[^\r\n]*|elasticsearch.url: https://$ELASTICSEARCH_HOST:$ELASTICSEARCH_PORT|" "$CONF"
+sed -i "s;.*server\.host:.*;server\.host: ${KIBANA_HOST};" "$CONF"
+
+sed -ri "s|elasticsearch.password:[^\r\n]*|elasticsearch.password: $KIBANA_PWD|" "$CONF"
+sed -ri "s|elasticsearch.ssl.verify:[^\r\n]*|elasticsearch.ssl.verify: true|" "$CONF"
+sed -ri "s|elasticsearch.ssl.ca:[^\r\n]*|elasticsearch.ssl.ca: /etc/elasticsearch/searchguard/ssl/ca/root-ca.pem|" "$CONF"

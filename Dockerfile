@@ -1,77 +1,20 @@
-FROM debian:jessie
-
-# add our user and group first to make sure their IDs get assigned consistently
-RUN groupadd -r kibana && useradd -r -m -g kibana kibana
-
-RUN apt-get update && apt-get install -y \
-		apt-transport-https \
-		ca-certificates \
-		wget \
-# generating PDFs requires libfontconfig and libfreetype6
-		libfontconfig \
-		libfreetype6 \
-	--no-install-recommends && rm -rf /var/lib/apt/lists/*
-
-# grab gosu for easy step-down from root
-ENV GOSU_VERSION 1.10
-RUN set -x \
-	&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
-	&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-	&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
-	&& rm -rf "$GNUPGHOME" /usr/local/bin/gosu.asc \
-	&& chmod +x /usr/local/bin/gosu \
-	&& gosu nobody true
-
-# grab tini for signal processing and zombie killing
-ENV TINI_VERSION v0.9.0
-RUN set -x \
-	&& wget -O /usr/local/bin/tini "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini" \
-	&& wget -O /usr/local/bin/tini.asc "https://github.com/krallin/tini/releases/download/$TINI_VERSION/tini.asc" \
-	&& export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 6380DC428747F6C393FEACA59A84159D7001A4E5 \
-	&& gpg --batch --verify /usr/local/bin/tini.asc /usr/local/bin/tini \
-	&& rm -rf "$GNUPGHOME" /usr/local/bin/tini.asc \
-	&& chmod +x /usr/local/bin/tini \
-	&& tini -h
-
-RUN set -ex; \
-# https://artifacts.elastic.co/GPG-KEY-elasticsearch
-	key='46095ACC8548582C1A2699A9D27D666CD88E42B4'; \
-	export GNUPGHOME="$(mktemp -d)"; \
-	gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
-	gpg --export "$key" > /etc/apt/trusted.gpg.d/elastic.gpg; \
-	rm -rf "$GNUPGHOME"; \
-	apt-key list
-
-# https://www.elastic.co/guide/en/kibana/5.0/deb.html
-RUN echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/kibana.list
+FROM alpine:3.6
 
 ENV KIBANA_VERSION 6.0.0
 
-RUN set -x \
-	&& apt-get update \
-	&& apt-get install -y --no-install-recommends kibana=$KIBANA_VERSION \
-	&& rm -rf /var/lib/apt/lists/* \
-	\
-# the default "server.host" is "localhost" in 5+
-	&& sed -ri "s!^(\#\s*)?(server\.host:).*!\2 '0.0.0.0'!" /etc/kibana/kibana.yml \
-	&& grep -q "^server\.host: '0.0.0.0'\$" /etc/kibana/kibana.yml \
-	\
-# ensure the default configuration is useful when using --link
-	&& sed -ri "s!^(\#\s*)?(elasticsearch\.url:).*!\2 'http://elasticsearch:9200'!" /etc/kibana/kibana.yml \
-	&& grep -q "^elasticsearch\.url: 'http://elasticsearch:9200'\$" /etc/kibana/kibana.yml
+# Kibana
+RUN apk --update add curl && \
+    mkdir /opt && \
+    curl -s https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz | tar zx -C /opt && \
+    apk add nodejs && \
+    rm -rf /opt/kibana-${KIBANA_VERSION}/node && \
+    mkdir -p /opt/kibana-${KIBANA_VERSION}/node/bin && \
+    ln -sf /usr/bin/node /opt/kibana-${KIBANA_VERSION}/node/bin/node && \
+    rm -rf /var/cache/apk/*
 
 # Plugins
-RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-6.beta1/searchguard-kibana-$KIBANA_VERSION-6.beta1.zip
-
-ENV PATH /usr/share/kibana/bin:$PATH
-EXPOSE 5601
-
-RUN apt-get update -y \
-# curl used to check elasticsearch is started
-&&  apt-get install curl -y
+RUN /opt/kibana-${KIBANA_VERSION}/node/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-4/searchguard-kibana-$KIBANA_VERSION-4.zip
+ENV PATH /opt/kibana-${KIBANA_VERSION}/node/bin:$PATH
 
 RUN mkdir -p /.backup/kibana
 COPY config/kibana.yml /.backup/kibana/kibana.yml
@@ -85,8 +28,9 @@ EXPOSE 5601
 VOLUME /etc/kibana
 
 ENV KIBANA_PWD="changeme" \
-    ELASTICSEARCH_HOST="elasticsearch" \
-    ELASTICSEARCH_PORT="9200"
+    ELASTICSEARCH_HOST="0-0-0-0" \
+    ELASTICSEARCH_PORT="9200" \
+		KIBANA_HOST="0.0.0.0" 
 
 ENTRYPOINT ["/run/entrypoint.sh"]
 CMD ["kibana"]

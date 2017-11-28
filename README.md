@@ -69,14 +69,12 @@ sysctl -w vm.max_map_count=262144
 You can set it permanently by modifying `vm.max_map_count` setting in your `/etc/sysctl.conf`.
 # Environment Variables
 
+##### KIBANA_HOST | `0-0-0-0`
 ##### KIBANA_PWD | `changeme`
 password for elasticsearch built-in user *kibana*.
 
-##### ELASTICSEARCH_HOST | `elasticsearch`
-Elasticsearch hostname.
-
+##### ELASTICSEARCH_HOST | `0-0-0-0`
 ##### ELASTICSEARCH_PORT | `9200`
-Elasticsearch port.
 
 # Configure Kibana
 
