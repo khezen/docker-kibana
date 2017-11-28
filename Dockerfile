@@ -48,7 +48,7 @@ RUN set -ex; \
 # https://www.elastic.co/guide/en/kibana/5.0/deb.html
 RUN echo 'deb https://artifacts.elastic.co/packages/5.x/apt stable main' > /etc/apt/sources.list.d/kibana.list
 
-ENV KIBANA_VERSION 5.6.3
+ENV KIBANA_VERSION 6.0.0
 
 RUN set -x \
 	&& apt-get update \
@@ -64,7 +64,7 @@ RUN set -x \
 	&& grep -q "^elasticsearch\.url: 'http://elasticsearch:9200'\$" /etc/kibana/kibana.yml
 
 # Plugins
-RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-4/searchguard-kibana-$KIBANA_VERSION-4.zip
+RUN /usr/share/kibana/bin/kibana-plugin install https://github.com/floragunncom/search-guard-kibana-plugin/releases/download/v$KIBANA_VERSION-6.beta1/searchguard-kibana-$KIBANA_VERSION-6.beta1.zip
 
 ENV PATH /usr/share/kibana/bin:$PATH
 EXPOSE 5601
