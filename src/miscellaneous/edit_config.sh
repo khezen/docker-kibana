@@ -1,6 +1,6 @@
 #!bin/bash
 
-CONF="/opt/kibana-$KIBANA_VERSION/config/kibana.yml"
+CONF="/opt/kibana-$KIBANA_VERSION-linux-x86_64/config/kibana.yml"
 
 sed -ri "s|elasticsearch.url:[^\r\n]*|elasticsearch.url: https://$ELASTICSEARCH_HOST:$ELASTICSEARCH_PORT|" "$CONF"
 sed -i "s;.*server\.host:.*;server\.host: ${KIBANA_HOST};" "$CONF"
