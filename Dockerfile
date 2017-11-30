@@ -3,7 +3,7 @@ FROM alpine:3.6
 ENV KIBANA_VERSION 6.0.0
 ENV SG_VERSION 6.beta1
 
-RUN apk --update add curl wget && \
+RUN apk --update add bash curl wget && \
 	# Kibana
     mkdir /opt && \
     curl -s https://artifacts.elastic.co/downloads/kibana/kibana-${KIBANA_VERSION}-linux-x86_64.tar.gz | tar zx -C /opt && \
