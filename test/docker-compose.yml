@@ -6,8 +6,8 @@ services:
             ELASTIC_PWD: changeme
             KIBANA_PWD: changeme
         volumes:
-            - /data/elasticsearch:/usr/share/elasticsearch/data
-            - /etc/elasticsearch:/usr/share/elasticsearch/config 
+            - /data/elasticsearch:/elasticsearch/data
+            - /etc/elasticsearch:/elasticsearch/config 
         ports:
              - "9200:9200"
              - "9300:9300"
@@ -20,7 +20,8 @@ services:
             ELASTICSEARCH_HOST: localhost
             ELASTICSEARCH_PORT: 9200
         volumes:
-            - /etc/kibana:/etc/kibana
+            - /etc/kibana:/opt/kibana-6.0.0-linux-x86_64/config
+            - /etc/elasticsearch:/etc/elasticsearch
         ports:
              - "5601:5601"
         network_mode: bridge
