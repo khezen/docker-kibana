@@ -1,7 +1,7 @@
 FROM alpine:3.6
 
-ENV KIBANA_VERSION 6.1.3
-ENV SG_VERSION 6.1.3-10
+ENV KIBANA_VERSION 6.2.2
+ENV SG_VERSION 6.2.2-10
 
 RUN apk --update add bash curl wget && \
     mkdir /opt && \
