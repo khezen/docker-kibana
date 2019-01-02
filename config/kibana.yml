@@ -38,6 +38,7 @@ elasticsearch.url: '${ELASTICSEARCH_PROTOCOL}://${ELASTICSEARCH_HOST}:${ELASTICS
 # is proxied through the Kibana server.
 elasticsearch.username: "kibana"
 elasticsearch.password: '${KIBANA_PWD}'
+xpack.security.enabled: false
 searchguard.cookie.password: "4fjNPloEVvrVj28BsVh3jI8t3pmv7Qg6"
 elasticsearch.requestHeadersWhitelist: [ "Authorization", "sgtenant" ]
 
