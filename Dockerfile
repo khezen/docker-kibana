@@ -11,15 +11,12 @@ RUN apk --update add bash curl wget && \
     mkdir -p /opt/kibana-${KIBANA_VERSION}-linux-x86_64/node/bin && \
     ln -sf /usr/bin/node /opt/kibana-${KIBANA_VERSION}-linux-x86_64/node/bin/node && \
 		/opt/kibana-${KIBANA_VERSION}-linux-x86_64/bin/kibana-plugin install "https://oss.sonatype.org/content/repositories/releases/com/floragunn/search-guard-kibana-plugin/$SG_VERSION/search-guard-kibana-plugin-$SG_VERSION.zip" && \
-    rm "/opt/kibana-$KIBANA_VERSION-linux-x86_64/config/kibana.yml" && \
     rm -rf /var/cache/apk/*
-
 
 ENV PATH /opt/kibana-${KIBANA_VERSION}-linux-x86_64/bin:$PATH
 
 RUN mkdir -p /.backup/kibana
 COPY config /.backup/kibana/config
-RUN rm -f "/opt/kibana-$KIBANA_VERSION/config/kibana.yml"
 
 ADD ./src/ /run/
 RUN chmod +x -R /run/
@@ -31,6 +28,11 @@ ENV KIBANA_PWD="changeme" \
 	ELASTICSEARCH_PROTOCOL="https"
 		
 EXPOSE 5601
+
+# See https://github.com/elastic/kibana/issues/6057
+COPY config/kibana.yml /opt/kibana-$KIBANA_VERSION-linux-x86_64/config/kibana.yml
+RUN /opt/kibana-${KIBANA_VERSION}-linux-x86_64/bin/kibana 2>&1 | grep -m 1 "Optimization of .* complete in .* seconds"
+RUN rm -f /opt/kibana-$KIBANA_VERSION-linux-x86_64/config/kibana.yml
 
 ENTRYPOINT ["/run/entrypoint.sh"]
 CMD ["kibana"]
