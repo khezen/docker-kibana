@@ -1,7 +1,7 @@
 version: '2'
 services:
     elasticsearch:
-        image: khezen/elasticsearch
+        image: khezen/elasticsearch:6.5
         environment:
             ELASTIC_PWD: changeme
             KIBANA_PWD: changeme
@@ -20,7 +20,7 @@ services:
             ELASTICSEARCH_HOST: localhost
             ELASTICSEARCH_PORT: 9200
         volumes:
-            - /etc/kibana:/opt/kibana-6.0.0-linux-x86_64/config
+            - /etc/kibana:/kibana/config
             - /etc/elasticsearch:/etc/elasticsearch
         ports:
              - "5601:5601"
